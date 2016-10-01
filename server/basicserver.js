@@ -4,7 +4,7 @@ var app = express();
 var port = process.env.PORT || 8080;
 
 var cors = require('cors');
-
+app.use(cors({origin: 'http://localhost:8000'}));
 
 function init(model) {
 	var ledRouter = express.Router();
@@ -25,11 +25,9 @@ function init(model) {
 		response.json({value: model.pot});
 	});
 	app.use('/pot', potRouter);
-
-
-function init() {
-    app.listen(port)
-    console.log('started on port', port)
+	
+	app.listen(port); 
 }
+
 
 module.exports = {init};
