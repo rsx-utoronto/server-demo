@@ -1,3 +1,6 @@
 var basicserver = require('./basicserver'); 
+var serial = require('./serial_connection');
 
-basicserver.init();
+model = {led: 500, pot: 300}
+basicserver.init(model);
+serial.init(model); 
