@@ -1,0 +1,31 @@
+<!-- index.html  -->
+
+<head>
+	<title> RSX Mission Control </title>
+</head>
+
+<h1> Sample Dashboard Thingy </h1>
+
+<table>
+	<tr>
+		<th> Item </th>
+		<th> Potentiometer </th>
+	</tr>
+
+	<tr>
+		<td> LED </td>
+		<td id="led_val"> </td>
+	</tr>
+
+	<tr>
+		<td> Potentiometer </td>
+		<td id="pot_val"> </td>
+	</tr>
+</table>
+
+<button onclick="getNewValues()"> Refresh Values </button>
+<input oninput="setNewValue()" type='text'> </input>
+
+
+<script src='jquery-2.2.3.min.js'></script>
+<script src='main.js'></script>

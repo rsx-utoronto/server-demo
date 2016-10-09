@@ -13,7 +13,7 @@ function init(model) {
 		response.json({value: model.led});
 	});
 	ledRouter.put('/value/:val', (request, response) => {
-		console.log('made post reques   t', request.params.val)
+		console.log('made post request', request.params.val)
 		model.led = request.params.val;
 		response.json({value: model.led});
 	});
@@ -25,8 +25,8 @@ function init(model) {
 		response.json({value: model.pot});
 	});
 	app.use('/pot', potRouter);
-	
-	app.listen(port); 
+
+	app.listen(port);
 }
 
 

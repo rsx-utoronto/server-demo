@@ -8,44 +8,25 @@ var App = React.createClass({
   },
 
   getNewValues: function() {
-    var newled_value, newpot_value;
-
-    $.ajax({
-        type: 'get',
+    $.get({
         url: "http://localhost:8080/led/value",
-        async: false,
-        success: function(data) {
-          newled_value = data.value;
-          // alert(newled_value);
-        }
-    });
-    this.setState({led_value: newled_value});
+    })
+    .done(data => this.setState({led_value: data.value}));
 
-    $.ajax({
-        type: 'get',
+
+    $.get({
         url: "http://localhost:8080/pot/value",
-        async: false,
-        success: function(data) {
-          newpot_value = data.value;
-        }
-    });
-
-    // alert(newled_value);
-    this.setState({led_value: newled_value, pot_value: newpot_value});
+    })
+    .done(data => this.setState({pot_value: data.value}));
   },
 
   setLEDValue: function(event) {
-    var newled_value;
+    if (event.target.value === '') return;
     $.ajax({
-        type: 'put',
-        url: "http://localhost:8080/led/value/" + event.target.value,
-        async: false,
-        success: function(data) {
-          newled_value = data.value;
-        }
-    });
-
-    this.setState({led_value: newled_value});
+        type: 'PUT',
+        url: "http://localhost:8080/led/value/" + (event.target.value || "0")
+    })
+    .done(data => this.setState({led_value: data.value}));
   },
 
   render: function() {
@@ -69,7 +50,7 @@ var App = React.createClass({
           </tbody>
         </table>
         <div className="row">
-          <button onClick = {this.getNewValues}> Update Values</button>
+          <button onClick={this.getNewValues}> Refresh values </button>
         </div>
         <div className="row">
           <input type="text" value={this.state.led_value} onChange={this.setLEDValue}/>
@@ -81,4 +62,4 @@ var App = React.createClass({
 });
 
 
-ReactDOM.render(<App/>, document.getElementById('app-container'));
+ReactDOM.render(<App/>, $('#app-container').get(0));
