@@ -9,7 +9,7 @@ var api = require('./basic_server');
 var system = program.serial ? require('./serial_connection') : require('./dummy_system');
 
 console.log('Starting server, loading modules ...');
-model = {led: 500, pot: 300};
+model = {led: 255, pot: 300};
 api.init(model);
 system.init(model, program);
 
