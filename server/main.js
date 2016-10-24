@@ -6,7 +6,7 @@ var program = require('commander') // command line arguments to control which sy
  // add logging options
 
 var api = require('./basic_server');
-var system = program.serial ? require('./serial_connection') : require('./dummy_system');
+var system = require('./serial_connection');
 
 console.log('Starting server, loading modules ...');
 model = {led: 255, pot: 300};
